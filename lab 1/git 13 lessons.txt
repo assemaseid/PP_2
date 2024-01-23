@@ -1,0 +1,266 @@
+ 
+Last login: Tue Jan 23 15:37:57 on
+assemseidkarimeMBP-Assem ~ % git config --global user.name "assemaseid"
+assemseidkarim@MBP-Assem ~ % git config --global user.email "seidkarim601705@gmail.com"
+assemseidkarim@MBP-Assem ~ % git config --global init.defaultBranch main
+assemseidkarim@MBP-Assem ~ % git config --global core.autocrlf input
+git config --global core.safecrlf warn
+assemseidkarim@MBP-Assem ~ % mkdir work
+cd work
+touch hello.html
+assemseidkarim@MBP-Assem work % git init
+Initialized empty Git repository in /Users/assemseidkarim/work/.git/
+assemseidkarim@MBP-Assem work % git add hello.html
+git commit -m "Initial Commit"
+[main (root-commit) 86bb208] Initial Commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 hello.html
+assemseidkarim@MBP-Assem work % git status
+On branch main
+nothing to commit, working tree clean
+assemseidkarim@MBP-Assem work % git status
+
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   hello.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+assemseidkarim@MBP-Assem work % git add hello.html
+git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   hello.html
+
+assemseidkarim@MBP-Assem work % git add hello.htmls
+assemseidkarim@MBP-Assem work % git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   hello.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   hello.html
+
+assemseidkarim@MBP-Assem work % git commit -m "Added standard HTML page tags"
+git status
+[main 6f9a85c] Added standard HTML page tags
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   hello.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+assemseidkarim@MBP-Assem work % git add .
+git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   hello.html
+
+assemseidkarim@MBP-Assem work % git commit -m "Added HTML header"
+
+[main ef840c1] Added HTML header
+ 1 file changed, 2 insertions(+)
+assemseidkarim@MBP-Assem work % git log
+
+commit ef840c145e8b465fe6fe86a9e2e70dd8e8ce142f (HEAD -> main)
+Author: assemaseid <seidkarim601705@gmail.com>
+Date:   Tue Jan 23 16:08:13 2024 +0600
+
+    Added HTML header
+
+commit 6f9a85cef26bc00b744cc8fc3964d4dd62929c19
+Author: assemaseid <seidkarim601705@gmail.com>
+Date:   Tue Jan 23 16:07:21 2024 +0600
+
+    Added standard HTML page tags
+
+commit 463f90329ea0bb22df2781ad534b392eecae688c
+Author: assemaseid <seidkarim601705@gmail.com>
+Date:   Tue Jan 23 15:56:49 2024 +0600
+
+    Initial Commit
+
+commit 00afed0f5f773d6b98f93b440a01596c493640cb
+Author: assemaseid <seidkarim601705@gmail.com>
+Date:   Tue Jan 23 15:53:58 2024 +0600
+
+    Initial Commit
+assemseidkarim@MBP-Assem work % --pretty=oneline
+zsh: command not found: --pretty=oneline
+assemseidkarim@MBP-Assem work % git log --pretty=oneline
+
+ef840c145e8b465fe6fe86a9e2e70dd8e8ce142f (HEAD -> main) Added HTML header
+6f9a85cef26bc00b744cc8fc3964d4dd62929c19 Added standard HTML page tags
+463f90329ea0bb22df2781ad534b392eecae688c Initial Commit
+00afed0f5f773d6b98f93b440a01596c493640cb Initial Commit
+assemseidkarim@MBP-Assem work % git log --all --pretty=format:"%h %cd %s (%an)" --since="7 days ago"
+
+ef840c1 Tue Jan 23 16:08:13 2024 +0600 Added HTML header (assemaseid)
+6f9a85c Tue Jan 23 16:07:21 2024 +0600 Added standard HTML page tags (assemaseid)
+463f903 Tue Jan 23 15:56:49 2024 +0600 Initial Commit (assemaseid)
+00afed0 Tue Jan 23 15:53:58 2024 +0600 Initial Commit (assemaseid)
+assemseidkarim@MBP-Assem work % git log --pretty=format:"%h %ad | %s%d [%an]" --date=short
+
+ef840c1 2024-01-23 | Added HTML header (HEAD -> main) [assemaseid]
+6f9a85c 2024-01-23 | Added standard HTML page tags [assemaseid]
+463f903 2024-01-23 | Initial Commit [assemaseid]
+00afed0 2024-01-23 | Initial Commit [assemaseid]
+assemseidkarim@MBP-Assem work % 
+git config --global format.pretty '%h %ad | %s%d [%an]'
+git config --global log.date short
+assemseidkarim@MBP-Assem work % git log
+
+ef840c1 2024-01-23 | Added HTML header (HEAD -> main) [assemaseid]
+6f9a85c 2024-01-23 | Added standard HTML page tags [assemaseid]
+463f903 2024-01-23 | Initial Commit [assemaseid]
+00afed0 2024-01-23 | Initial Commit [assemaseid]
+assemseidkarim@MBP-Assem work % git checkout <hash>
+cat hello.html
+zsh: parse error near `\n'
+assemseidkarim@MBP-Assem work % git checkout 00afed0
+Note: switching to '00afed0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 00afed0 Initial Commit
+assemseidkarim@MBP-Assem work % $ cat hello.html
+zsh: command not found: $
+assemseidkarim@MBP-Assem work % cat hello.html 
+assemseidkarim@MBP-Assem work % git switch main
+Previous HEAD position was 00afed0 Initial Commit
+Switched to branch 'main'
+assemseidkarim@MBP-Assem work % cat hello.html
+<html>
+    <head>
+    </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+
+
+assemseidkarim@MBP-Assem work % git tag v1
+git log
+ef840c1 2024-01-23 | Added HTML header (HEAD -> main, tag: v1) [assemaseid]
+6f9a85c 2024-01-23 | Added standard HTML page tags [assemaseid]
+463f903 2024-01-23 | Initial Commit [assemaseid]
+00afed0 2024-01-23 | Initial Commit [assemaseid]
+assemseidkarim@MBP-Assem work % 
+assemseidkarim@MBP-Assem work % git checkout v1^
+Note: switching to 'v1^'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+S
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 6f9a85c Added standard HTML page tags
+assemseidkarim@MBP-Assem work %  cat hello.html
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+
+
+assemseidkarim@MBP-Assem work % git tag v1-beta
+git log
+6f9a85c 2024-01-23 | Added standard HTML page tags (HEAD, tag: v1-beta) [assemaseid]
+463f903 2024-01-23 | Initial Commit [assemaseid]
+00afed0 2024-01-23 | Initial Commit [assemaseid]
+assemseidkarim@MBP-Assem work % git checkout v1
+Previous HEAD position was 6f9a85c Added standard HTML page tags
+HEAD is now at ef840c1 Added HTML header
+assemseidkarim@MBP-Assem work % git checkout v1-beta
+Previous HEAD position was ef840c1 Added HTML header
+HEAD is now at 6f9a85c Added standard HTML page tags
+assemseidkarim@MBP-Assem work % git tag
+v1
+v1-beta
+assemseidkarim@MBP-Assem work % git log main --all
+ef840c1 2024-01-23 | Added HTML header (tag: v1, main) [assemaseid]
+6f9a85c 2024-01-23 | Added standard HTML page tags (HEAD, tag: v1-beta) [assemaseid]
+463f903 2024-01-23 | Initial Commit [assemaseid]
+00afed0 2024-01-23 | Initial Commit [assemaseid]
+assemseidkarim@MBP-Assem work % cat hello.html
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+
+
+assemseidkarim@MBP-Assem work % git switch main
+Previous HEAD position was 6f9a85c Added standard HTML page tags
+Switched to branch 'main'
+assemseidkarim@MBP-Assem work % git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   hello.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+assemseidkarim@MBP-Assem work % git checkout hello.html
+Updated 1 path from the index
+assemseidkarim@MBP-Assem work % git status
+On branch main
+nothing to commit, working tree clean
+assemseidkarim@MBP-Assem work % cat hello.html
+<html>
+    <head>
+    </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+
+
+assemseidkarim@MBP-Assem work % git add hello.html
+assemseidkarim@MBP-Assem work % git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   hello.html
+
+assemseidkarim@MBP-Assem work % git reset HEAD hello.html
+Unstaged changes after reset:
+M	hello.html
+assemseidkarim@MBP-Assem work % git checkout hello.html
+Updated 1 path from the index
+assemseidkarim@MBP-Assem work % git status
+On branch main
+nothing to commit, working tree clean
+assemseidkarim@MBP-Assem work % 
+
