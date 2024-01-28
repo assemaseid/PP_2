@@ -156,7 +156,7 @@ else:
      print("No")
 
 
-а = 50                      #ex4
+a = 50                      #ex4
 b = 10
 if a == b :
     print ("1")
@@ -165,7 +165,8 @@ elif a > b:
 else:
     print ("3")
 
-
+c = 50
+d = 40
 if a == b and c == d:       #ex5
     print ("Hello")
 
@@ -235,3 +236,4 @@ for x in fruits:
     if x == "banana":
       break
     print (x)
+
