@@ -5,8 +5,8 @@ if 5 > 2:            #ex 2
  print("YES")
 
 
-
 #PYTHON Comment
+ 
 #This is a comment   ex 1
  
 """                  ex 2
@@ -14,7 +14,6 @@ This is a comment
 written in 
 more than just one line
 """
-
 
 #PYTHON Variables
 carname = "Volvo"    #ex 1
@@ -112,4 +111,4 @@ txt = txt. replace ("H", "J")
 
 age = 36                    #ex 8
 txt = "My name is John, and I am {}"
-print (txt. format (age) ) 
+print (txt. format (age)) 
