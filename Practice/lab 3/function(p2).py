@@ -80,12 +80,8 @@ movies =[
 
 #ex 1
 def imdb_5_5(movie):
-    for movie in movies:
-        if movie["imdb"] > 5.5:
-            pass
-    print("True")
-
-imdb_5_5(movies)
+   return movie["imdb"] > 5.5
+print(imdb_5_5(movies[0])) 
 
 #ex 2
 good_movies = []
