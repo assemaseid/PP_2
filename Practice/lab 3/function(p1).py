@@ -95,7 +95,7 @@ def spy_game(nums):
         i += 1
     return False
 
-print(spy_game([1,2,4,0,0,7,5]))  # False
+print(spy_game([1,2,4,0,0,7,5]))  #True
 print(spy_game([1,0,2,4,0,5,7]))  # True
 print(spy_game([1,7,2,0,4,5,0]))  # False
 print(spy_game([1,0,0,7,5]))  # True
@@ -122,12 +122,6 @@ numbers([1, 1, 3, 4, 3, 4, 6,2,2])
  
 # ex11
 
-def palindrome(word_or_phrase):
-    word_or_phrase.lower()
-    word_or_phrase.strip()
-    print(word_or_phrase)
-
-palindrome("maDam")
 
 def palindrome(word_or_phrase):
     cleaned_word = word_or_phrase.replace(" ", "").lower()
