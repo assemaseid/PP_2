@@ -1,4 +1,4 @@
-# Dictionary of movies
+
 
 movies =[
 {
@@ -78,7 +78,6 @@ movies =[
 }
 ]
 
-#ex 1
 #ex 1
 def imdb_5_5(movie):
     for movie in movies:
