@@ -15,10 +15,10 @@ centigrade = temp(98)
 print(int(centigrade))
 
 #ex 3
-def solve(numheads, numlegs):
+def solve(num_heads, num_legs):
 
-    numChickens = (4 * numheads - numlegs) / 2
-    numRubbit = numheads - numChickens
+    numChickens = (4 * num_heads - num_legs) / 2
+    numRubbit = num_heads - numChickens
     print(numChickens)
     print(numRubbit)
 
