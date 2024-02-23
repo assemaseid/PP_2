@@ -14,7 +14,6 @@ tomorrow = datetime.datetime.now() + datetime.timedelta(days=1)
 print("Tomorrow:", tomorrow.strftime("%x"))
 
 #ex 3
-
 #datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") also we can use
 print(datetime.datetime.now().isoformat(sep=" ",timespec= "seconds"))
 
