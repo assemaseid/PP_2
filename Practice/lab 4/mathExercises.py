@@ -1,6 +1,7 @@
 import math
 
 #ex 1
+
 def converter(degrees):
     #radian = degrees * (math.pi/180)
     radian = math.radians(degrees)

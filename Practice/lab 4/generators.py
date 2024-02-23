@@ -9,7 +9,6 @@ for square in squares(5):
     print(square)
 
 #ex 2
-    
 def even_numbers(n):
     for i in range(0, n + 1):
         if i % 2 == 0:
@@ -35,7 +34,7 @@ def squares(a, b):
         yield i ** 2
 
 for square in squares(1, 5):
-    print(square)
+    print(square) 
 
 #ex 5
 def countdown_generator(n):
