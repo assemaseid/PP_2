@@ -19,8 +19,8 @@ print(datetime.datetime.now().isoformat(sep=" ",timespec= "seconds"))
 
 #ex 4
 def date_difference_in_seconds(date_str1, date_str2, date_format='%Y-%m-%d %H:%M:%S'):
-    date1 = datetime.strptime(date_str1, date_format)
-    date2 = datetime.strptime(date_str2, date_format)
+    date1 = datetime.datetime.strptime(date_str1, date_format)
+    date2 = datetime.datetime.strptime(date_str2, date_format)
     time_difference = abs((date1 - date2).total_seconds())
     return time_difference
 

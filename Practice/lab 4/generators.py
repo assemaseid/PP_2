@@ -1,5 +1,6 @@
 
 #ex 1
+
 def squares(N):
     for i in range(N): #or range(1, N + 1) если N влючительно
         yield i**2
