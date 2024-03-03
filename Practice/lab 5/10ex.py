@@ -63,10 +63,10 @@ print(re.sub("[ ,.]", ":", text))
 def snake_to_camel(word):
     return ''.join(x.capitalize() or '_' for x in word.split('_'))
 
-print(snake_to_camel('python_exercises'))
+print(snake_to_camel('assem_seidkarim'))
 
 #8
-text = "PythonTutorialAndExercises"
+text = "AssemSeidkarim"
 print(re.findall('[A-Z][^A-Z]*', text))
 
 # 9 insert space before cap letter
@@ -75,8 +75,7 @@ def capital_words_spaces(str1):
 
 
 print(capital_words_spaces("Python"))
-print(capital_words_spaces("PythonExercises"))
-print(capital_words_spaces("PythonExercisesPracticeSolution"))
+
 
 #10 to convert camel string to snake case
 def camel_to_snake(text):
@@ -84,5 +83,5 @@ def camel_to_snake(text):
         str1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()
 
-print(camel_to_snake('PythonExercises'))
+print(camel_to_snake('AssemSeidkarim'))
 
