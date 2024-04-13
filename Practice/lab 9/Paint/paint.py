@@ -18,7 +18,7 @@ drawing = False
 
 points = []
 
-erase = pygame.image.load("lab 8/Paint/eraser.png")
+erase = pygame.image.load("Paint/eraser.png")
 erase_x = 130
 erase_y = 25
 erase_rect = erase.get_rect()
