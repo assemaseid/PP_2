@@ -1,5 +1,6 @@
 import pygame
-import random,time
+import random
+import time
 
 # Initialize Pygame
 pygame.init()
@@ -10,8 +11,7 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Snake Game")
 icon = pygame.image.load("Snake/icon.png")
-pygame.display.set_icon
-
+pygame.display.set_icon(icon)
 
 # Colors
 white = (255, 255, 255)
@@ -83,90 +83,83 @@ def check_self_collision(snake_body):
         return True
     return False
 
-# Main function
-def game():
-    global direction, change_to, snake_pos, food_pos, snake_body, score, level, snake_speed
-
-    # Game loop
-    game_over = False
-    while not game_over:
-        # Event handling
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game_over = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    change_to = 'UP'
-                if event.key == pygame.K_DOWN:
-                    change_to = 'DOWN'
-                if event.key == pygame.K_LEFT:
-                    change_to = 'LEFT'
-                if event.key == pygame.K_RIGHT:
-                    change_to = 'RIGHT'
-
-        # Change direction
-        if change_to == 'UP' and direction != 'DOWN':
-            direction = 'UP'
-        if change_to == 'DOWN' and direction != 'UP':
-            direction = 'DOWN'
-        if change_to == 'LEFT' and direction != 'RIGHT':
-            direction = 'LEFT'
-        if change_to == 'RIGHT' and direction != 'LEFT':
-            direction = 'RIGHT'
-
-        # Move snake
-        if direction == 'UP':
-            snake_pos[1] -= snake_block
-        if direction == 'DOWN':
-            snake_pos[1] += snake_block
-        if direction == 'LEFT':
-            snake_pos[0] -= snake_block
-        if direction == 'RIGHT':
-            snake_pos[0] += snake_block
-
-        # Check if food is eaten
-        if check_food_collision(snake_pos, food_pos):
-            score += 1
-            pygame.mixer.music.load("Snake/ding.mp3")
-            pygame.mixer.music.play()
-            food_pos = update_food_pos(snake_body)
-            snake_body.insert(0, list(snake_pos))
-            if score % 3 == 0:  # Increase level every 3 foods
-                level += 1
-                snake_speed += 2  # Increase speed with level
-
-        else:
-            snake_body.insert(0, list(snake_pos))
-            snake_body.pop()
-
-        # Check collision with walls or itself
-        if check_wall_collision(snake_pos) or check_self_collision(snake_body):
-            pygame.mixer.music.load("Snake/crash.mp3")
-            pygame.mixer.music.play()
-            time.sleep(1)
+# Game loop
+game_over = False
+while not game_over:
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             game_over = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                change_to = 'UP'
+            if event.key == pygame.K_DOWN:
+                change_to = 'DOWN'
+            if event.key == pygame.K_LEFT:
+                change_to = 'LEFT'
+            if event.key == pygame.K_RIGHT:
+                change_to = 'RIGHT'
 
-        # Display elements
-        screen.fill(white)
-        display_snake(snake_body)
-        pygame.draw.rect(screen, red, pygame.Rect(food_pos[0], food_pos[1], snake_block, snake_block))
+    # Change direction
+    if change_to == 'UP' and direction != 'DOWN':
+        direction = 'UP'
+    if change_to == 'DOWN' and direction != 'UP':
+        direction = 'DOWN'
+    if change_to == 'LEFT' and direction != 'RIGHT':
+        direction = 'LEFT'
+    if change_to == 'RIGHT' and direction != 'LEFT':
+        direction = 'RIGHT'
 
-        display_score_level(score, level)
+    # Move snake
+    if direction == 'UP':
+        snake_pos[1] -= snake_block
+    if direction == 'DOWN':
+        snake_pos[1] += snake_block
+    if direction == 'LEFT':
+        snake_pos[0] -= snake_block
+    if direction == 'RIGHT':
+        snake_pos[0] += snake_block
 
-        # Update display
-        pygame.display.update()
+    # Check if food is eaten
+    if check_food_collision(snake_pos, food_pos):
+        score += 1
+        pygame.mixer.music.load("Snake/ding.mp3")
+        pygame.mixer.music.play()
+        food_pos = update_food_pos(snake_body)
+        snake_body.insert(0, list(snake_pos))
+        if score % 3 == 0:  # Increase level every 3 foods
+            level += 1
+            snake_speed += 2  # Increase speed with level
 
-        # Control game speed
-        pygame.time.Clock().tick(snake_speed)
+    else:
+        snake_body.insert(0, list(snake_pos))
+        snake_body.pop()
 
-    # Game over message
-    game_over_message = font_style.render("Game Over!", True, black)
-    screen.blit(game_over_message, [screen_width / 3, screen_height / 3])
+    # Check collision with walls or itself
+    if check_wall_collision(snake_pos) or check_self_collision(snake_body):
+        pygame.mixer.music.load("Snake/crash.mp3")
+        pygame.mixer.music.play()
+        time.sleep(1)
+        game_over = True
+
+    # Display elements
+    screen.fill(white)
+    display_snake(snake_body)
+    pygame.draw.rect(screen, red, pygame.Rect(food_pos[0], food_pos[1], snake_block, snake_block))
+
+    display_score_level(score, level)
+
+    # Update display
     pygame.display.update()
-    pygame.time.delay(2000)
 
-    pygame.quit()
-    quit()
+    # Control game speed
+    pygame.time.Clock().tick(snake_speed)
 
-# Start the game
-game()
+# Game over message
+game_over_message = font_style.render("Game Over!", True, black)
+screen.blit(game_over_message, [screen_width / 3, screen_height / 3])
+pygame.display.update()
+pygame.time.delay(2000)
+
+pygame.quit()
+quit()
