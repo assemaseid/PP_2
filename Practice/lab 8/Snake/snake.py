@@ -10,7 +10,7 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Snake Game")
-icon = pygame.image.load("Snake/icon.png")
+icon = pygame.image.load("lab 8/Snake/icon.png")
 pygame.display.set_icon(icon)
 
 # Colors
@@ -18,6 +18,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 red = (255, 0, 0)
 green = (0, 255, 0)
+snake_green = (0, 100, 0)
 
 # Snake initial position and size
 snake_block = 20
@@ -50,7 +51,7 @@ def display_score_level(score, level):
 # Function to display snake
 def display_snake(snake_body):
     for pos in snake_body:
-        pygame.draw.rect(screen, green, pygame.Rect(pos[0], pos[1], snake_block, snake_block))
+        pygame.draw.rect(screen, snake_green, pygame.Rect(pos[0], pos[1], snake_block, snake_block))
 
 # Function to check collision with food
 def check_food_collision(snake_pos, food_pos):
@@ -86,7 +87,6 @@ def check_self_collision(snake_body):
 # Game loop
 game_over = False
 while not game_over:
-    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_over = True
@@ -123,7 +123,7 @@ while not game_over:
     # Check if food is eaten
     if check_food_collision(snake_pos, food_pos):
         score += 1
-        pygame.mixer.music.load("Snake/ding.mp3")
+        pygame.mixer.music.load("lab 8/Snake/ding.mp3")
         pygame.mixer.music.play()
         food_pos = update_food_pos(snake_body)
         snake_body.insert(0, list(snake_pos))
@@ -137,13 +137,13 @@ while not game_over:
 
     # Check collision with walls or itself
     if check_wall_collision(snake_pos) or check_self_collision(snake_body):
-        pygame.mixer.music.load("Snake/crash.mp3")
+        pygame.mixer.music.load("lab 8/Snake/crash.mp3")
         pygame.mixer.music.play()
         time.sleep(1)
         game_over = True
 
     # Display elements
-    screen.fill(white)
+    screen.fill(green)
     display_snake(snake_body)
     pygame.draw.rect(screen, red, pygame.Rect(food_pos[0], food_pos[1], snake_block, snake_block))
 
