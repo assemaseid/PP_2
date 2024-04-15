@@ -12,34 +12,25 @@ FramePerSec = pygame.time.Clock()
 screen_width = 400
 screen_height = 600
 screen = pygame.display.set_mode((400,600))
-backgroung_image = pygame.image.load("Racer/AnimatedStreet.png")
-backgroung_sound = pygame.mixer.music.load("Racer/background.wav")
+backgroung_image = pygame.image.load("lab 9/Racer/AnimatedStreet.png")
+backgroung_sound = pygame.mixer.music.load("lab 9/Racer/background.wav")
 pygame.mixer.music.play(-1) #play infinetly
 
 #icon
-icon = pygame.image.load("Racer/Player.png")
+icon = pygame.image.load("lab 9/Racer/Player.png")
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Racer Game")
 
 #Player
-player_image = pygame.image.load("Racer/Player.png")
+player_image = pygame.image.load("lab 9/Racer/Player.png")
 player_movement = 5
-player_rect = player_image.get_rect()
-player_rect.center = (160, 520)
+player_rect = pygame.Rect(160,490,44,110)
 
 #Enemy
-enemy_image = pygame.image.load("Racer/Enemy.png")
+enemy_image = pygame.image.load("lab 9/Racer/Enemy.png")
 enemy_movement = 5
 enemy_rect = enemy_image.get_rect()
 enemy_rect.center = (random.randint(50,350), 5)
-
-#Font and Texts
-score_font = pygame.font.SysFont("Verdana", 20)
-score = 0
-game_over_font = pygame.font.SysFont("Verdana", 60)
-game_over_text = game_over_font.render("Game Over",True,(0,0,0))
-
-
 
 #Coins
 coin = 0
@@ -50,7 +41,17 @@ rect_x = circle_center[0] - coin_size//2
 rect_y = circle_center[1] - coin_size//2
 circle_rect = pygame.Rect(rect_x, rect_y, coin_size, coin_size)
 
+#Font and Texts
+score_font = pygame.font.SysFont("Verdana", 20)
+score = 0
+game_over_font = pygame.font.SysFont("Verdana", 60)
+game_over_text = game_over_font.render("Game Over",True,(0,0,0))
 
+
+INC_SPEED = pygame.USEREVENT + 1
+pygame.time.set_timer(INC_SPEED, 1000)
+
+coin_collected = False
 running = True
 while running:
     screen.fill((0,0,0))
@@ -58,6 +59,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == INC_SPEED:
+            if coin > 10:
+                enemy_movement += 0.5
        
     
     pressed_keys = pygame.key.get_pressed()
@@ -96,21 +100,25 @@ while running:
     
     
 #Collect Coins
-    if not player_rect.colliderect(circle_rect):
-        pygame.draw.circle(screen, (255, 215, 0), circle_rect.center, coin_size // 2)
-        pygame.draw.rect(screen,(0,0,0),circle_rect,1)
+       #Collect Coins
+    if player_rect.colliderect(circle_rect):
+        if not coin_collected:
+            coin += 1  # Increment coin count
+            coin_collected = True
+        
     else:
-        coin += 1
+        pygame.draw.circle(screen, (255, 215, 0), circle_rect.center, coin_size // 2)
+        pygame.draw.rect(screen, (0, 0, 0), circle_rect, -1)
+        coin_collected = False  # Reset the flag if no collision occurs
 
     coins = score_font.render(f"Coins:{coin}", True, (0,0,0))
     screen.blit(coins, (5, 30))
 
-    #if coin > 10:
-    #   enemy_movement += 0.5
+    
        
 #Crash
     if  player_rect.colliderect(enemy_rect):
-        crash_sound = pygame.mixer.music.load("Racer/crash.wav")
+        crash_sound = pygame.mixer.music.load("lab 9/Racer/crash.wav")
         pygame.mixer.music.play()
         time.sleep(1) #wait for playing sound util quiting
         screen.fill((255,0,0))
