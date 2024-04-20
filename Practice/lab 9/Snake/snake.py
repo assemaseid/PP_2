@@ -10,7 +10,7 @@ pygame.display.set_caption("Snake Game")
 icon = pygame.image.load("lab 8/Snake/icon.png")
 pygame.display.set_icon(icon)
 
-white = (255, 255, 250)
+white = (255, 255, 255)
 import pygame
 import random,time
 
