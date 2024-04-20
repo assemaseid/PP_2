@@ -25,7 +25,7 @@ erase_rect.center = (erase_x, erase_y)
 
 save = pygame.image.load("lab 9/Paint/save.png")
 save_x = 285
-save_y = 25
+save_y = 27
 save_rect = erase.get_rect()
 save_rect.center = (save_x, save_y)
 
@@ -56,7 +56,7 @@ def draw_menu():
     figures = [square,cicle,right_triangle,equilateral_triangle,rhombus,rectangle]
     
 
-    return color_rect,rgbs,eraser,figures
+    return color_rect,rgbs,eraser,figures,saver
 
 
 def draw_painting(paints):
@@ -84,7 +84,7 @@ running = True
 while running:
     screen.fill(WHITE)
 
-    colors, rgb_colors, eraserr,figure = draw_menu()
+    colors, rgb_colors, eraserr,figure,saver = draw_menu()
     mouse = pygame.mouse.get_pos()
     
     left_click = pygame.mouse.get_pressed()[0]
