@@ -60,8 +60,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == INC_SPEED:
-            if coin > 10:
-                enemy_movement += 0.5
+            if coin % 10 == 0:
+                enemy_movement += 1
        
     
     pressed_keys = pygame.key.get_pressed()
