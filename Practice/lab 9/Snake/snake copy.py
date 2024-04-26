@@ -1,3 +1,4 @@
+
 import pygame
 import random,time
 
@@ -34,34 +35,24 @@ def display_snake(snake_body):
     for pos in snake_body:
         pygame.draw.rect(screen, green, pygame.Rect(pos[0], pos[1], snake_block_size, snake_block_size))
 
-def check_food_collision(snake_pos, food_pos,food_pos_2):
+def check_food_collision(snake_pos, food_pos):
     if snake_pos[0] == food_pos[0] and snake_pos[1] == food_pos[1]:
-        return True
-    elif snake_pos[0] == food_pos_2[0] and snake_pos[1] == food_pos_2[1]:
         return True
     return False
 
 def update_food_pos(snake_body):
     global food_width, last_food_time
     food_size = random.randint(10, 30)
-    food_width = food_size
-    food_pos = [
-        random.randrange(1, (screen_width // snake_block_size)) * snake_block_size,
-        random.randrange(1, (screen_height // snake_block_size)) * snake_block_size
-    ]
-    food_pos_2 = [
-        random.randrange(1, (screen_width // snake_block_size)) * snake_block_size,
-        random.randrange(1, (screen_height // snake_block_size)) * snake_block_size
-    ]
+    food_pos = [random.randrange(1, (screen_width // snake_block_size)) * snake_block_size,
+                random.randrange(1, (screen_height // snake_block_size)) * snake_block_size]
 
     for pos in snake_body:
         if food_pos[0] == pos[0] and food_pos[1] == pos[1]:
             return update_food_pos(snake_body)
-        elif food_pos_2[0] == pos[0] and food_pos_2[1] == pos[1]:
-            return update_food_pos(snake_body)
 
+    food_width = food_size
     last_food_time = pygame.time.get_ticks()
-    return food_pos, food_pos_2, food_size
+    return food_pos
 
 def check_wall_collision(snake_pos):
     if snake_pos[0] >= screen_width or snake_pos[0] < 0 or snake_pos[1] >= screen_height or snake_pos[1] < 0:
@@ -77,7 +68,6 @@ def check_self_collision(snake_body):
 direction = 'RIGHT'
 change_to = direction
 food_pos = update_food_pos(snake_body)
-food_pos_2 = update_food_pos(snake_body)
 score = 0
 level = 1
 
@@ -115,14 +105,14 @@ while not game_over:
         snake_pos[0] += snake_block_size
 
     current_time = pygame.time.get_ticks()
-    if current_time - last_food_time > 5000:  
+    if current_time - last_food_time > 7000:  
         food_pos = update_food_pos(snake_body)
 
-    if check_food_collision(snake_pos, food_pos,food_pos_2):
+    if check_food_collision(snake_pos, food_pos):
         score += 1
         pygame.mixer.music.load("lab 9/Snake/ding.mp3")
         pygame.mixer.music.play()
-        food_pos, food_pos_2 = update_food_pos(snake_body)
+        food_pos = update_food_pos(snake_body)
         snake_body.insert(0, list(snake_pos))
         if score % 3 == 0: 
             level += 1
@@ -141,7 +131,6 @@ while not game_over:
     screen.fill(white)
     display_snake(snake_body)
     pygame.draw.rect(screen, red, pygame.Rect(food_pos[0], food_pos[1],food_width,food_width))
-    pygame.draw.rect(screen, red, pygame.Rect(food_pos_2[0], food_pos_2[1],food_width,food_width))
 
     display_score_level(score, level)
 
