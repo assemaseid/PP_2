@@ -18,10 +18,16 @@ cur.execute("""CREATE TABLE IF NOT EXISTS contacts (
 )
 
 # Read data from CSV and insert into the database
-with open("data.csv", "r") as file:
-    content = csv.reader(file, delimiter=";")
-    next(content)  # Skip header row
-    data = [(row[0], row[1], row[2]) for row in content if len(row) >= 10]
+try:
+    with open("/Users/assemseidkarim/Desktop/PP_2/Practice/lab 10/data.csv", "r") as file:
+        content = csv.reader(file, delimiter=";")
+        next(content)  # Skip header row
+        data = [(row[0], row[1], row[2]) for row in content if len(row) >= 3]
+except FileNotFoundError:
+    print("The file 'data.csv' was not found.")
+except Exception as e:
+    print("An error occurred while reading the CSV file:", e)
+
 csv_file = """INSERT INTO contacts (first_name, last_name, phone_number) 
          VALUES (%s, %s, %s)"""
 
