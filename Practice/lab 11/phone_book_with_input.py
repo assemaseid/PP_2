@@ -51,10 +51,10 @@ while True:
         
     else:
         break
-
-    
-
     conn.commit()  # Commit after each update or insert
+
+def 
 
 cur.close()
 conn.close()
+# Function that returns all records based on a pattern (example of pattern: part of name, surname, phone number)
