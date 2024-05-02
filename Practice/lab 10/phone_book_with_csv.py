@@ -17,7 +17,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS contacts (
             )""" 
 )
 
-# Read data from CSV and insert into the database
+# Read data FROM CSV and insert into the database
 try:
     with open("/Users/assemseidkarim/Desktop/PP_2/Practice/lab 10/data.csv", "r") as file:
         content = csv.reader(file, delimiter=";")
