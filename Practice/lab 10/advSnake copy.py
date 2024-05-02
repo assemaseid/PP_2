@@ -337,7 +337,7 @@ while not game_over:
         pygame.mixer.music.play()
         food_pos, food_pos_2, food_width = update_food_pos(snake_body)
         snake_body.insert(0, list(snake_pos))
-        if score % 5 == 0:
+        if score % 3 == 0:
             level += 1
             snake_speed += 2
                 
