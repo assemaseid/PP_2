@@ -32,16 +32,16 @@ cur.execute('''
 username = input("Enter Username: ")
 
 def insert_users_data(username):
-    cur.execute("select * from users where username = (%s)", (username,))
+    cur.execute("SELECT * FROM users WHERE username = (%s)", (username,))
     user = cur.fetchone()
     if user is None:
-        cur.execute("INSERT INTO users(username) values(%s)", (username,))
+        cur.execute("INSERT INTO users(username) VALUES(%s)", (username,))
         conn.commit()
 
 insert_users_data(username)
 
 def insert_scores_data(username, score, level):
-    cur.execute("select user_id from users where username = (%s)", (username,))
+    cur.execute("SELECT user_id FROM users WHERE username = (%s)", (username,))
     user_id = cur.fetchone()
     cur.execute("INSERT INTO scores(user_id,score,level) VALUES (%s,%s,%s)",(user_id,score,level))
     conn.commit()
